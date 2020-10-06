@@ -15,15 +15,14 @@ try:
     # Write line of text to first line of display
     
     while True:
-        display.lcd_clear()
         humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 
         if humidity is not None and temperature is not None:
             #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
             temp = "{0:.1f}".format(temperature)
             hum = "{0:.2f}".format(humidity)
-            stringi = "T:" + str(temp) + " H:" + hum
-            czas = time.strftime("%H:%M:%S %d/%m")
+            stringi = "T:" + str(temp) + " H:" + hum + "  "
+            czas = time.strftime("%H:%M:%S %d/%m")+ "  "
 
             display.lcd_display_string(stringi,1)
             print(stringi + " " + czas)
