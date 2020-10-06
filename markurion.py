@@ -22,7 +22,8 @@ try:
             temp = "{0:.1f}".format(temperature)
             hum = "{0:.2f}".format(humidity)
             stringi = "T:" + str(temp) + " H:" + hum + "  "
-            czas = time.strftime("%H:%M:%S %d/%m")+ "  "
+            #czas = time.strftime("%H:%M:%S %d/%m")+ "  "
+            czas = time.strftime("%H:%M     %d/%m")
 
             display.lcd_display_string(stringi,1)
             print(stringi + " " + czas)
