@@ -13,7 +13,7 @@ try:
     # Write line of text to first line of display
     
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2301, 4)
         temp = (round(temperature,2))
         hum = (round(humidity,2))
         stringi = "T:" + str(temp) + " H:" + str(hum)
