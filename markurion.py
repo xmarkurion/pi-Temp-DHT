@@ -4,6 +4,7 @@ import lcddriver
 import time
 import datetime
 import Adafruit_DHT
+import sys
 
 display = lcddriver.lcd()
 
