@@ -19,7 +19,7 @@ try:
         if humidity is not None and temperature is not None:
             #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
             temp = (round(temperature,1))
-            hum = '{1:0.1f}'.format(humidity)
+            hum = humidity
             stringi = "T:" + str(temp) + " H:" + hum
             czas = time.strftime("%H:%M:%S %d/%m")
 
