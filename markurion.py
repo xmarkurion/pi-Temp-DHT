@@ -31,7 +31,7 @@ try:
             time.sleep(1)
         
 
-        #Save data to scv file
+        #Savee data to scv file
 #       with open("data.csv", "a") as f:
 #               data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(temp) + "," + str(hum) + "\n"
 #               f.write(data)
