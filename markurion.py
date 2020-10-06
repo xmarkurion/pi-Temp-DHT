@@ -11,7 +11,7 @@ display = lcddriver.lcd()
 try:
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
-    display.lcd_display_string(" By - Markurion ", 2) 
+    display.lcd_display_string("By - Markurion ", 2) 
     # Write line of text to first line of display
     
     while True:
