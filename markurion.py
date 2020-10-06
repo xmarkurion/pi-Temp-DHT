@@ -14,14 +14,19 @@ try:
     
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-        temp = (round(temperature,1))
-        hum = (round(humidity,1))
-        stringi = "T:" + str(temp) + " H:" + hum
-        czas = time.strftime("%H:%M:%S %d/%m")
 
-        display.lcd_display_string(stringi,1)
-        print(stringi + " " + czas)
-        display.lcd_display_string(czas,2)
+        if humidity is not None and temperature is not None:
+            #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
+            temp = (round(temperature,1))
+            hum = ('{1:0.1f}%'.format(humidity))
+            stringi = "T:" + str(temp) + " H:" + hum
+            czas = time.strftime("%H:%M:%S %d/%m")
+
+            display.lcd_display_string(stringi,1)
+            print(stringi + " " + czas)
+            display.lcd_display_string(czas,2)
+            time.sleep(1)
+        
 
         #Save data to scv file
 #       with open("data.csv", "a") as f:
@@ -31,7 +36,6 @@ try:
 
         #display.lcd_display_string(str(datetime.datetime.now().time()), 2) # Write just the time to the display
         # Program then loops with no delay (Can be added with a time.sleep)
-        time.sleep(1)
 
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
     print("Cleaning up!")
