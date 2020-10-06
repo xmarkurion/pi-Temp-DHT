@@ -13,9 +13,9 @@ try:
     # Write line of text to first line of display
     
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2301, 4)
-        temp = (round(temperature,2))
-        hum = (round(humidity,2))
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+        temp = (round(temperature,1))
+        hum = (round(humidity,1))
         stringi = "T:" + str(temp) + " H:" + str(hum)
         czas = time.strftime("%H:%M:%S %d/%m")
 
