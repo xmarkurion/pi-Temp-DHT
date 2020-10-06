@@ -16,7 +16,7 @@ try:
         humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
         temp = (round(temperature,1))
         hum = (round(humidity,1))
-        stringi = "T:" + str(temp) + " H:" + str(hum)
+        stringi = "T:" + str(temp) + " H:" + hum
         czas = time.strftime("%H:%M:%S %d/%m")
 
         display.lcd_display_string(stringi,1)
