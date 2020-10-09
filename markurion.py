@@ -42,7 +42,7 @@ try:
                 print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
 
                 #LCD Display data Block BEGIN
-                display.lcd_display_string("T:{0} H:{1}".format(temps[x],hums[x]))
+                display.lcd_display_string("T:{0} H:{1}".format(temps[x],hums[x]),1)
                 czas = time.strftime(" %H:%M     %d/%m")
                 display.lcd_display_string(czas,2)
                 #END
