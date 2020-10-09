@@ -5,7 +5,7 @@ import time
 import datetime
 import Adafruit_DHT
 import sys
-from statistics import mean
+import statistics
 
 display = lcddriver.lcd()
 
