@@ -36,7 +36,8 @@ try:
         #Initialize 5min delay 
         for x in range(301):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-            if humidity is not None and temperature is not None:
+            #if humidity is not None and temperature is not None:  This disabling a but that sometimes sensor detect humidity at 3000%
+            if humidity is not None and humidity<101 and temperature is not None and temperature<100:
                 temps.append( round(temperature,2) )
                 hums.append( round(humidity,2) )
                 print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
