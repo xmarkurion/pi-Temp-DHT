@@ -26,8 +26,11 @@ try:
     
     while True:
         # Clear list of values
-        temps.clear()
-        hums.clear()
+        #temps.clear()
+        #hums.clear()
+
+        del temps[:]
+        del hums[:]
         #---------------------
         #{time.strftime("%H:%M:%S %d/%m")}
         #Initialize 5min delay 
