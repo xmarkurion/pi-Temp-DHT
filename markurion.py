@@ -6,8 +6,15 @@ import datetime
 import Adafruit_DHT
 import sys
 import statistics
-
 display = lcddriver.lcd()
+
+def cal_average(num):
+    sum_num = 0
+    for t in num:
+        sum_num = sum_num + t           
+
+    avg = sum_num / len(num)
+    return avg
 
 try:
     print("Writing to Display")
@@ -40,8 +47,8 @@ try:
                 time.sleep(1)
 
         #Read Average And save those to CSV      	    
-        avg_temp = mean(temps)
-        avg_hum = mean(hums)
+        avg_temp = cal_average(temps)
+        avg_hum = cal_average(hums)
         #print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
         print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
         #--------------------
