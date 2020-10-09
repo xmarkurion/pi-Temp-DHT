@@ -5,7 +5,7 @@ import time
 import datetime
 import Adafruit_DHT
 import sys
-import statistics
+
 display = lcddriver.lcd()
 
 def cal_average(num):
