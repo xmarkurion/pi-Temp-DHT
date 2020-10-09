@@ -46,34 +46,19 @@ try:
                 czas = time.strftime(" %H:%M     %d/%m")
                 display.lcd_display_string(czas,2)
                 #END
-
                 time.sleep(1)
 
         #Read Average And save those to CSV      	    
         avg_temp = cal_average(temps)
         avg_hum = cal_average(hums)
-        #print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
         print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
         #--------------------
-        #if humidity is not None and temperature is not None:
-            #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
-            # temp = "{0:.1f}".format(temperature)
-            # hum = "{0:.2f}".format(humidity)
-            # stringi = "T:" + str(temp) + " H:" + hum + "  "
-            #czas = time.strftime("%H:%M:%S %d/%m")+ "  "
-            # czas = time.strftime(" %H:%M     %d/%m")
-
-            # display.lcd_display_string(stringi,1)
-            # print(stringi + " " + czas)
-            # display.lcd_display_string(czas,2)
-            # time.sleep(1)
-        
 
         #Savee data to scv file
-#       with open("data.csv", "a") as f:
-#               data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(temp) + "," + str(hum) + "\n"
-#               f.write(data)
-#               f.close()
+        with open("data.csv", "a") as f:
+            data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
+            f.write(data)
+            f.close()
 
         #display.lcd_display_string(str(datetime.datetime.now().time()), 2) # Write just the time to the display
         # Program then loops with no delay (Can be added with a time.sleep)
