@@ -29,10 +29,10 @@ try:
             if humidity is not None and temperature is not None:
                 temps.append( round(temperature,2) )
                 hums.append( round(humidity,2) )
-                print(f'{x} - - T: {temps[x]}, H: {hums[x]}')
+                print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
 
                 #LCD Display data Block BEGIN
-                display.lcd_display_string(f'T: {temps[x]}, H: {hums[x]}',1)
+                display.lcd_display_string("T:{0} H:{1}".format(temps[x],hums[x]))
                 czas = time.strftime(" %H:%M     %d/%m")
                 display.lcd_display_string(czas,2)
                 #END
