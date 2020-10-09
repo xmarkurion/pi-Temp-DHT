@@ -5,6 +5,7 @@ import time
 import datetime
 import Adafruit_DHT
 import sys
+from statistics import mean
 
 display = lcddriver.lcd()
 
@@ -13,22 +14,49 @@ try:
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
     # Write line of text to first line of display
+    temps = []  #Init a list of temps
+	hums = []  #init a list of hums
     
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+        # Clear list of values
+        temps.clear()
+		hums.clear()
+        #---------------------
 
-        if humidity is not None and temperature is not None:
+        #Initialize 5min delay 
+		for x in range(301):
+            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+            if humidity is not None and temperature is not None:
+                temps.append( round(temperature,2) )
+			    hums.append( round(humidity,2) )
+			    print(f'{x} - {time.strftime("%H:%M:%S %d/%m")} - T: {temps[x]}, H: {hums[x]}')
+
+                #LCD Display data Block BEGIN
+                display.lcd_display_string(f'T: {temps[x]}, H: {hums[x]}',1)
+                czas = time.strftime(" %H:%M     %d/%m")
+                display.lcd_display_string(czas,2)
+                #END
+
+                time.sleep(1)
+
+        #Read Average And save those to CSV      	    
+        avg_temp = mean(temps)
+		avg_hum = mean(hums)
+		print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
+
+        #--------------------
+        #if humidity is not None and temperature is not None:
             #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
-            temp = "{0:.1f}".format(temperature)
-            hum = "{0:.2f}".format(humidity)
-            stringi = "T:" + str(temp) + " H:" + hum + "  "
+            # temp = "{0:.1f}".format(temperature)
+            # hum = "{0:.2f}".format(humidity)
+            # stringi = "T:" + str(temp) + " H:" + hum + "  "
             #czas = time.strftime("%H:%M:%S %d/%m")+ "  "
-            czas = time.strftime(" %H:%M     %d/%m")
+            # czas = time.strftime(" %H:%M     %d/%m")
 
-            display.lcd_display_string(stringi,1)
-            print(stringi + " " + czas)
-            display.lcd_display_string(czas,2)
-            time.sleep(1)
+            # display.lcd_display_string(stringi,1)
+            # print(stringi + " " + czas)
+            # display.lcd_display_string(czas,2)
+            # time.sleep(1)
         
 
         #Savee data to scv file
