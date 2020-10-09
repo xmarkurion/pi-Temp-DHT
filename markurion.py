@@ -22,14 +22,14 @@ try:
         temps.clear()
         hums.clear()
         #---------------------
-
+        #{time.strftime("%H:%M:%S %d/%m")}
         #Initialize 5min delay 
         for x in range(301):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             if humidity is not None and temperature is not None:
                 temps.append( round(temperature,2) )
                 hums.append( round(humidity,2) )
-                print(f'{x} - {time.strftime("%H:%M:%S %d/%m")} - T: {temps[x]}, H: {hums[x]}')
+                print(f'{x} - - T: {temps[x]}, H: {hums[x]}')
 
                 #LCD Display data Block BEGIN
                 display.lcd_display_string(f'T: {temps[x]}, H: {hums[x]}',1)
