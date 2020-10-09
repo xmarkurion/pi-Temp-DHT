@@ -15,21 +15,21 @@ try:
     display.lcd_display_string("By - Markurion ", 2) 
     # Write line of text to first line of display
     temps = []  #Init a list of temps
-	hums = []  #init a list of hums
+    hums = []  #init a list of hums
     
     while True:
         # Clear list of values
         temps.clear()
-		hums.clear()
+        hums.clear()
         #---------------------
 
         #Initialize 5min delay 
-		for x in range(301):
+        for x in range(301):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             if humidity is not None and temperature is not None:
                 temps.append( round(temperature,2) )
-			    hums.append( round(humidity,2) )
-			    print(f'{x} - {time.strftime("%H:%M:%S %d/%m")} - T: {temps[x]}, H: {hums[x]}')
+                hums.append( round(humidity,2) )
+                print(f'{x} - {time.strftime("%H:%M:%S %d/%m")} - T: {temps[x]}, H: {hums[x]}')
 
                 #LCD Display data Block BEGIN
                 display.lcd_display_string(f'T: {temps[x]}, H: {hums[x]}',1)
@@ -41,8 +41,8 @@ try:
 
         #Read Average And save those to CSV      	    
         avg_temp = mean(temps)
-		avg_hum = mean(hums)
-		print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
+        avg_hum = mean(hums)
+        print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
 
         #--------------------
         #if humidity is not None and temperature is not None:
