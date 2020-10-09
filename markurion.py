@@ -42,8 +42,8 @@ try:
         #Read Average And save those to CSV      	    
         avg_temp = mean(temps)
         avg_hum = mean(hums)
-        print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
-        print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2) ))
+        #print(f'Avg Temp: {round(avg_temp,2)} Avg Hum: {round(avg_hum,2)}')
+        print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
         #--------------------
         #if humidity is not None and temperature is not None:
             #print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
