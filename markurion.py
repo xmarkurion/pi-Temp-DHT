@@ -35,6 +35,7 @@ try:
         #{time.strftime("%H:%M:%S %d/%m")}
         #Initialize 5min delay 
         for x in range(301):
+            print(x + '\n')
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             #if humidity is not None and temperature is not None:  This disabling a but that sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
