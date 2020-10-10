@@ -20,13 +20,14 @@ def cal_average(num):
 try:
     temps = []  #Init a list of temps
     hums = []  #init a list of hums
-
+    
     # Write line of text to first line of display
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
     
     while True:
+        
         
          
         for x in range(301):
@@ -46,7 +47,7 @@ try:
                     display.lcd_display_string(czas,2)
                     #END
 
-                    time.sleep(1)
+                    #time.sleep(1)
             else:
                 print('Read Error... 404')
                 
