@@ -1,5 +1,6 @@
-# Simple clock program. Writes the exact time.
-# Demo program for the I2C 16x2 Display from Ryanteck.uk
+# Simple DHT TEMP HUM reading program. 
+# Collecting data for 5 min then save the data to CSV data file.
+
 import lcddriver
 import time
 import datetime
@@ -17,28 +18,22 @@ def cal_average(num):
     return avg
 
 try:
+    # Write line of text to first line of display
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
-    # Write line of text to first line of display
-    
     
     while True:
-        # Clear list of values
-        #temps.clear()
-        #hums.clear()
+        
         temps = []  #Init a list of temps
         hums = []  #init a list of hums
-        #---------------------
-        #{time.strftime("%H:%M:%S %d/%m")}
-        #Initialize 5min delay 
+         
         for x in range(301):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-            #if humidity is not None and temperature is not None:  This disabling a but that sometimes sensor detect humidity at 3000%
+            
+            # Sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
                 if humidity<100 and temperature<100:
-                    #temps.append( round(temperature,2) )
-                    #hums.append( round(humidity,2) )
                     temps.insert(x,round(temperature,2))
                     hums.insert(x,round(humidity,2))
                 
@@ -49,6 +44,7 @@ try:
                     czas = time.strftime(" %H:%M     %d/%m")
                     display.lcd_display_string(czas,2)
                     #END
+                    
                     time.sleep(1)
             else:
                 print('Read Error... 404')
@@ -57,21 +53,20 @@ try:
         avg_temp = cal_average(temps)
         avg_hum = cal_average(hums)
         print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
-        #--------------------
 
         #Savee data to scv file
         with open("data.csv", "a") as f:
             data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
             f.write(data)
             f.close()
+        #--------------------------------------
 
+        # Clear list of values
         del temps[:]
         del hums[:]
 
-        #display.lcd_display_string(str(datetime.datetime.now().time()), 2) # Write just the time to the display
-        # Program then loops with no delay (Can be added with a time.sleep)
-
-except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
+# Exit the program and cleanup
+except KeyboardInterrupt: 
     print("Cleaning up!")
     display.lcd_clear()
 
