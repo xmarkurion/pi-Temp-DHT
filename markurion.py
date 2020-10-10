@@ -40,8 +40,8 @@ try:
                 if humidity<100 and temperature<100:
                     #temps.append( round(temperature,2) )
                     #hums.append( round(humidity,2) )
-                    temps[x] = round(temperature,2) 
-                    hums[x] =  round(humidity,2) 
+                    temps.insert(x,round(temperature,2))
+                    hums.insert(x,round(humidity,2))
                 
                     print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
 
