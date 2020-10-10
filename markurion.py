@@ -21,16 +21,14 @@ try:
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
     # Write line of text to first line of display
-    temps = []  #Init a list of temps
-    hums = []  #init a list of hums
+    
     
     while True:
         # Clear list of values
         #temps.clear()
         #hums.clear()
-
-        del temps[:]
-        del hums[:]
+        temps = []  #Init a list of temps
+        hums = []  #init a list of hums
         #---------------------
         #{time.strftime("%H:%M:%S %d/%m")}
         #Initialize 5min delay 
@@ -65,6 +63,9 @@ try:
             data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
             f.write(data)
             f.close()
+
+        del temps[:]
+        del hums[:]
 
         #display.lcd_display_string(str(datetime.datetime.now().time()), 2) # Write just the time to the display
         # Program then loops with no delay (Can be added with a time.sleep)
