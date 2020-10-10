@@ -33,7 +33,6 @@ try:
         #{time.strftime("%H:%M:%S %d/%m")}
         #Initialize 5min delay 
         for x in range(301):
-            print(str(x) + '\n')
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             #if humidity is not None and temperature is not None:  This disabling a but that sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
@@ -51,6 +50,8 @@ try:
                     display.lcd_display_string(czas,2)
                     #END
                     time.sleep(1)
+            else:
+                print('Read Error... 404')
                 
         #Read Average And save those to CSV      	    
         avg_temp = cal_average(temps)
