@@ -18,6 +18,9 @@ def cal_average(num):
     return avg
 
 try:
+    temps = []  #Init a list of temps
+    hums = []  #init a list of hums
+
     # Write line of text to first line of display
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
@@ -25,8 +28,6 @@ try:
     
     while True:
         
-        temps = []  #Init a list of temps
-        hums = []  #init a list of hums
          
         for x in range(301):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
@@ -44,7 +45,7 @@ try:
                     czas = time.strftime(" %H:%M     %d/%m")
                     display.lcd_display_string(czas,2)
                     #END
-                    
+
                     time.sleep(1)
             else:
                 print('Read Error... 404')
