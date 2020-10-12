@@ -40,7 +40,7 @@ try:
                     hums.insert(x,round(humidity,2))
                 
                     print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
-                    print("{0} - T:{1}, H:{2}".format(x,temperature,humidity]))
+                    print("{0} - T:{1}, H:{2}".format(x,temperature,humidity))
                     print("/n")
 
                     #LCD Display data Block BEGIN
