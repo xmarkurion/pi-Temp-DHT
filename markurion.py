@@ -9,6 +9,7 @@ import sys
 import random
 
 display = lcddriver.lcd()
+display.lcd_clear()
 
 def cal_average(num):
     sum_num = 0
@@ -18,7 +19,6 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
-try:
     temps = []  #Init a list of temps
     hums = []  #init a list of hums
     
@@ -26,6 +26,7 @@ try:
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
+    time.sleep(1)
     
     while True:
         try:
@@ -69,9 +70,13 @@ try:
 
         except EnvironmentError:
             print("DHT sensor had a bad time Try again later")
-            
+
+        except KeyboardInterrupt:
+            display.lcd_clear()
+
+
 # Exit the program and cleanup
-except KeyboardInterrupt: 
-    print("Cleaning up!")
-    display.lcd_clear()
+# except KeyboardInterrupt: 
+#     print("Cleaning up!")
+#    
 
