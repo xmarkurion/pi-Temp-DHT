@@ -54,7 +54,7 @@ try:
                     display.lcd_display_string(czas,2)
                     #END
 
-                    time.sleep(2)
+                    #time.sleep(2)
             else:
                 print('Read Error... 404')
                 
