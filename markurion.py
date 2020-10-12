@@ -31,8 +31,12 @@ try:
         
          
         for x in range(301):
-            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-            
+            #humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+            #humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+            #read off test
+            humidity = random.randit(1,99) 
+            temperature = random.randit(1,99) 
+
             # Sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
                 if humidity<100 and temperature<100:
@@ -41,7 +45,7 @@ try:
                 
                     print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
                     print("{0} - T:{1}, H:{2}".format(x,temperature,humidity))
-                    print("/n")
+                    print("\n")
 
                     #LCD Display data Block BEGIN
                     display.lcd_display_string("T:{0} H:{1}".format(temps[x],hums[x]),1)
