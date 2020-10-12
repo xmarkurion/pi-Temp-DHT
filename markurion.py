@@ -18,8 +18,6 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
-    temps = []  #Init a list of temps
-    hums = []  #init a list of hums
     
 # Write line of text to first line of display
 print("Writing to Display")
@@ -29,9 +27,12 @@ time.sleep(1)
     
 while True:
     try:
+        temps = []  #Init a list of temps
+        hums = []  #init a list of hums
+
         for x in range(101):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-
+            
             # Sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
                 if humidity<100 and temperature<100:
