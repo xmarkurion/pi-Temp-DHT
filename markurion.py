@@ -35,8 +35,8 @@ try:
             #humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             #humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             #read off test
-            humidity = random.randit(1,99) 
-            temperature = random.randit(1,99) 
+            humidity = random.randint(1,99) 
+            temperature = random.randint(1,99) 
 
             # Sometimes sensor detect humidity at 3000%
             if humidity is not None and temperature is not None:
