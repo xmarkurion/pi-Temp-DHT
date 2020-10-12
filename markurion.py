@@ -9,7 +9,6 @@ import sys
 import random
 
 display = lcddriver.lcd()
-display.lcd_clear()
 
 def cal_average(num):
     sum_num = 0
@@ -30,7 +29,7 @@ time.sleep(1)
     
 while True:
     try:
-        for x in range(100):
+        for x in range(101):
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 
             # Sometimes sensor detect humidity at 3000%
@@ -49,8 +48,6 @@ while True:
                     display.lcd_display_string(czas,2)
                     #END
                     time.sleep(1)
-            else:
-                print('Read Error... 404')
                 
         #Read Average And save those to CSV      	    
         avg_temp = cal_average(temps)
