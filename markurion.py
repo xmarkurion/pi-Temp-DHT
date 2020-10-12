@@ -6,6 +6,7 @@ import time
 import datetime
 import Adafruit_DHT
 import sys
+import random
 
 display = lcddriver.lcd()
 
