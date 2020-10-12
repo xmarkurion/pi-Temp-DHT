@@ -18,18 +18,20 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
+try:
     temps = []  #Init a list of temps
     hums = []  #init a list of hums
     
-# Write line of text to first line of display
-print("Writing to Display")
-display.lcd_display_string("Program Start ", 1) 
-display.lcd_display_string("By - Markurion ", 2) 
-time.sleep(1)
+    # Write line of text to first line of display
+    print("Writing to Display")
+    display.lcd_display_string("Program Start ", 1) 
+    display.lcd_display_string("By - Markurion ", 2) 
     
-while True:
-    try:
-        for x in range(101):
+    while True:
+        
+
+        for x in range(100):
+            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
             humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 
             # Sometimes sensor detect humidity at 3000%
@@ -47,7 +49,9 @@ while True:
                     czas = time.strftime(" %H:%M     %d/%m")
                     display.lcd_display_string(czas,2)
                     #END
-                    time.sleep(1)
+                    #time.sleep(2)
+            else:
+                print('Read Error... 404')
                 
         #Read Average And save those to CSV      	    
         avg_temp = cal_average(temps)
@@ -65,15 +69,8 @@ while True:
         del temps[:]
         del hums[:]
 
-    except EnvironmentError:
-        print("DHT sensor had a bad time Try again later")
-
-    except KeyboardInterrupt:
-        display.lcd_clear()
-
-
 # Exit the program and cleanup
-# except KeyboardInterrupt: 
-#     print("Cleaning up!")
-#    
+except KeyboardInterrupt: 
+    print("Cleaning up!")
+    display.lcd_clear()
 
