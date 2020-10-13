@@ -33,8 +33,8 @@ try:
         # Sometimes sensor detect humidity at 3000%
         if humidity is not None and temperature is not None:
             if humidity<100 and temperature<100:
-                temps.insert(x,round(temperature,2))
-                hums.insert(x,round(humidity,2))
+                temps = round(temperature,2))
+                hums = round(humidity,2))
                 
                 print("T:{1}, H:{2}".format(temperature,humidity))
                 print("\n")
