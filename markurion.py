@@ -36,6 +36,7 @@ try:
     x = 0
 
     # Write line of text to first line of display
+    display.lcd_clear()
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
     display.lcd_display_string("By - Markurion ", 2) 
