@@ -7,6 +7,7 @@ import datetime
 import Adafruit_DHT
 import sys
 import random
+import os.path
 
 display = lcddriver.lcd()
 
@@ -17,6 +18,18 @@ def cal_average(num):
 
     avg = sum_num / len(num)
     return avg
+
+
+if os.path.isfile('data.csv'):
+    print('File data.csv - Found!')
+else:
+    with open("data.csv", "a") as f:
+        data = (time.strftime(")%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
+        data = ("Day,Time,Temperature,Humidity\n")
+        f.write(data)
+        f.close()
+    print('File not found. Creating file - data.csv')
+
 
 try:
     temps_list = []  #Init a list of temps
