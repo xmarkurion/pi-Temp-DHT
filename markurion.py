@@ -18,10 +18,11 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
-try:
-    temps = []  #Init a list of temps
-    hums = []  #init a list of hums
-    
+temps = []  #Init a list of temps
+hums = []  #init a list of hums
+x = 0
+
+try:  
     # Write line of text to first line of display
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
@@ -45,6 +46,27 @@ try:
                 display.lcd_display_string(czas,2)
                 #END
                 time.sleep(1)
+
+                #Save data to table or file if needed
+                temps.insert(temps)
+                hums.insert(hums)
+                if x >= 100:
+                    avg_temp = cal_average(temps)
+                    avg_hum = cal_average(hums)
+                    print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
+
+                    with open("data.csv", "a") as f:
+                        data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
+                        f.write(data)
+                        f.close()
+
+                    x=0
+                    del temps[:]
+                    del hums[:]
+                else:
+                    x+=1
+
+                
         else:
                 print('Read Error... 404')
                 
