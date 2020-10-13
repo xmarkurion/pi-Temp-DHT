@@ -36,7 +36,7 @@ try:
                 temps = round(temperature,2)
                 hums = round(humidity,2)
                 
-                print("T:{1}, H:{2}".format(str(temps),str(hums)))
+                print("T:{0}, H:{1}".format(str(temps),str(hums)))
                 print("\n")
 
                 #LCD Display data Block BEGIN
