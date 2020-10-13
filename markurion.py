@@ -24,7 +24,6 @@ if os.path.isfile('data.csv'):
     print('File data.csv - Found!')
 else:
     with open("data.csv", "a") as f:
-        data = (time.strftime(")%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
         data = ("Day,Time,Temperature,Humidity\n")
         f.write(data)
         f.close()
