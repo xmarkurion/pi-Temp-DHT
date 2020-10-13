@@ -18,63 +18,54 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
+try:
+    temps = []  #Init a list of temps
+    hums = []  #init a list of hums
     
-# Write line of text to first line of display
-print("Writing to Display")
-display.lcd_display_string("Program Start ", 1) 
-display.lcd_display_string("By - Markurion ", 2) 
-time.sleep(1)
+    # Write line of text to first line of display
+    print("Writing to Display")
+    display.lcd_display_string("Program Start ", 1) 
+    display.lcd_display_string("By - Markurion ", 2) 
     
-while True:
-    try:
-        temps = []  #Init a list of temps
-        hums = []  #init a list of hums
+    while True:       
+        humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 
-        for x in range(101):
-            humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-            
-            # Sometimes sensor detect humidity at 3000%
-            if humidity is not None and temperature is not None:
-                if humidity<100 and temperature<100:
-                    temps.insert(x,round(temperature,2))
-                    hums.insert(x,round(humidity,2))
+        # Sometimes sensor detect humidity at 3000%
+        if humidity is not None and temperature is not None:
+            if humidity<100 and temperature<100:
+                temps.insert(x,round(temperature,2))
+                hums.insert(x,round(humidity,2))
                 
-                    print("{0} - T:{1}, H:{2}".format(x,temps[x],hums[x]))
-                    print("{0} - T:{1}, H:{2}".format(x,temperature,humidity))
-                    print("\n")
+                print("T:{1}, H:{2}".format(temperature,humidity))
+                print("\n")
 
-                    #LCD Display data Block BEGIN
-                    display.lcd_display_string("T:{0} H:{1}".format(temps[x],hums[x]),1)
-                    czas = time.strftime(" %H:%M     %d/%m")
-                    display.lcd_display_string(czas,2)
-                    #END
-                    time.sleep(1)
+                #LCD Display data Block BEGIN
+                display.lcd_display_string("T:{0} H:{1}".format(temps,hums),1)
+                czas = time.strftime(" %H:%M     %d/%m")
+                display.lcd_display_string(czas,2)
+                #END
+                time.sleep(1)
+        else:
+                print('Read Error... 404')
                 
         #Read Average And save those to CSV      	    
-        avg_temp = cal_average(temps)
-        avg_hum = cal_average(hums)
-        print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
+        # avg_temp = cal_average(temps)
+        # avg_hum = cal_average(hums)
+        # print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
 
         #Savee data to scv file
-        with open("data.csv", "a") as f:
-            data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
-            f.write(data)
-            f.close()
+        # with open("data.csv", "a") as f:
+        #     data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
+        #     f.write(data)
+        #     f.close()
         #--------------------------------------
 
         # Clear list of values
-        del temps[:]
-        del hums[:]
-
-    except EnvironmentError:
-        print("DHT sensor had a bad time Try again later")
-
-    except KeyboardInterrupt:
-        display.lcd_clear()
-
+        # del temps[:]
+        # del hums[:]
 
 # Exit the program and cleanup
-# except KeyboardInterrupt: 
-#     print("Cleaning up!")
-#    
+except KeyboardInterrupt: 
+    print("Cleaning up!")
+    display.lcd_clear()
 
