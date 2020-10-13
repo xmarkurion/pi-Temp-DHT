@@ -18,11 +18,13 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
-temps = []  #Init a list of temps
-hums = []  #init a list of hums
-x = 0
 
-try:  
+
+try:
+    temps = []  #Init a list of temps
+    hums = []  #init a list of hums
+    x = 0
+
     # Write line of text to first line of display
     print("Writing to Display")
     display.lcd_display_string("Program Start ", 1) 
