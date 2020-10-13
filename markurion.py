@@ -36,11 +36,11 @@ try:
                 temps = round(temperature,2)
                 hums = round(humidity,2)
                 
-                print("T:{1}, H:{2}".format(temperature,humidity))
+                print("T:{1}, H:{2}".format(str(temps),str(hums)))
                 print("\n")
 
                 #LCD Display data Block BEGIN
-                display.lcd_display_string("T:{0} H:{1}".format(temps,hums),1)
+                display.lcd_display_string("T:{0} H:{1}".format(str(temps),str(hums)),1)
                 czas = time.strftime(" %H:%M     %d/%m")
                 display.lcd_display_string(czas,2)
                 #END
