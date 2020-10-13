@@ -18,8 +18,6 @@ def cal_average(num):
     avg = sum_num / len(num)
     return avg
 
-
-
 try:
     temps_list = []  #Init a list of temps
     hums_list = []  #init a list of hums
@@ -36,15 +34,14 @@ try:
         # Sometimes sensor detect humidity at 3000%
         if humidity is not None and temperature is not None:
             if humidity<100 and temperature<100:
+                czas = time.strftime(" %H:%M     %d/%m")
                 temps = round(temperature,2)
                 hums = round(humidity,2)
                 
-                print("T:{0}, H:{1}".format(str(temps),str(hums)))
-                print("\n")
+                print("{0} - {1} - T:{2}, H:{3}".format(x,czas,str(temps),str(hums)))
 
                 #LCD Display data Block BEGIN
                 display.lcd_display_string("T:{0} H:{1}".format(str(temps),str(hums)),1)
-                czas = time.strftime(" %H:%M     %d/%m")
                 display.lcd_display_string(czas,2)
                 #END
                 time.sleep(1)
@@ -52,7 +49,8 @@ try:
                 #Save data to table or file if needed
                 temps_list.append(temps)
                 hums_list.append(hums)
-                if x >= 100:
+
+                if x >= 300:
                     avg_temp = cal_average(temps_list)
                     avg_hum = cal_average(hums_list)
                     print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
@@ -71,22 +69,6 @@ try:
                 
         else:
                 print('Read Error... 404')
-                
-        #Read Average And save those to CSV      	    
-        # avg_temp = cal_average(temps)
-        # avg_hum = cal_average(hums)
-        # print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
-
-        #Savee data to scv file
-        # with open("data.csv", "a") as f:
-        #     data = time.strftime("%m/%d/%Y,%H:%M:%S") + "," + str(round(avg_temp,2)) + "," + str(round(avg_hum,2)) + "\n"
-        #     f.write(data)
-        #     f.close()
-        #--------------------------------------
-
-        # Clear list of values
-        # del temps[:]
-        # del hums[:]
 
 # Exit the program and cleanup
 except KeyboardInterrupt: 
