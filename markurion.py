@@ -21,8 +21,8 @@ def cal_average(num):
 
 
 try:
-    temps = []  #Init a list of temps
-    hums = []  #init a list of hums
+    temps_list = []  #Init a list of temps
+    hums_list = []  #init a list of hums
     x = 0
 
     # Write line of text to first line of display
@@ -50,11 +50,11 @@ try:
                 time.sleep(1)
 
                 #Save data to table or file if needed
-                temps.insert(temps)
-                hums.insert(hums)
+                temps_list.insert(temps)
+                hums_list.insert(hums)
                 if x >= 100:
-                    avg_temp = cal_average(temps)
-                    avg_hum = cal_average(hums)
+                    avg_temp = cal_average(temps_list)
+                    avg_hum = cal_average(hums_list)
                     print("Avg Temp: {0} Avg Hum: {1}".format(round(avg_temp,2),round(avg_hum,2)))
 
                     with open("data.csv", "a") as f:
@@ -63,8 +63,8 @@ try:
                         f.close()
 
                     x=0
-                    del temps[:]
-                    del hums[:]
+                    del temps_list[:]
+                    del hums_list[:]
                 else:
                     x+=1
 
