@@ -50,8 +50,8 @@ try:
                 time.sleep(1)
 
                 #Save data to table or file if needed
-                temps_list.insert(temps)
-                hums_list.insert(hums)
+                temps_list.append(temps)
+                hums_list.append(hums)
                 if x >= 100:
                     avg_temp = cal_average(temps_list)
                     avg_hum = cal_average(hums_list)
